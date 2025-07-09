@@ -1,0 +1,40 @@
+{
+  "name": "Barel",
+  "version": "1.0.0",
+  "description": "A secure Docker development environment for Next.js + Supabase applications",
+  "homepage": "https://barel.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/temporarystudios/barel"
+  },
+  "features": {
+    "core": [
+      "Next.js 14+ with App Router",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase (PostgreSQL, Auth, Storage, Realtime)",
+      "AI coding assistant integration",
+      "Docker Compose multi-container setup",
+      "Network security with firewall"
+    ],
+    "optional": [
+      "shadcn/ui components",
+      "Prisma ORM",
+      "Stripe payments",
+      "Paddle payments",
+      "OAuth providers (Google, GitHub, Discord)"
+    ]
+  },
+  "scripts": {
+    "init": "./scripts/init-project.sh",
+    "generate-keys": "./scripts/generate-keys.sh",
+    "check-health": "./scripts/check-health.sh",
+    "db-backup": "./scripts/db-backup.sh",
+    "db-restore": "./scripts/db-restore.sh"
+  },
+  "requirements": {
+    "docker": ">=20.10",
+    "editor": "VS Code >=1.75 or Cursor >=0.25",
+    "memory": "8GB recommended"
+  }
+}

@@ -1,0 +1,75 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+app/.env.local
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Production
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# OS
+.DS_Store
+*.pem
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Supabase
+supabase/.branches
+supabase/.temp
+
+# Docker volumes
+postgres-data/
+storage-data/
+vector-data/
+
+# Generated files
+volumes/api/kong.yml
+
+# Backups
+backups/
+
+# Temporary files
+*.tmp
+.cache/
+
+# Claude config (mounted from host)
+.claude/
+CLAUDE.md
+
+# ============================================
+# App Repository Strategy (uncomment if using)
+# ============================================
+# If you're using the "App-Only Repository" workflow,
+# uncomment the lines below to prevent the app directory
+# from being committed to the Barel repository.
+# See WORKFLOW_GUIDE.md for more details.
+#
+app/
+!app/.env.example
+!app/README.md

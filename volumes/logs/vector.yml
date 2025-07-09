@@ -1,0 +1,56 @@
+api:
+  enabled: true
+  address: 0.0.0.0:8686
+
+sources:
+  docker_host:
+    type: docker_logs
+    docker_host: /var/run/docker.sock
+    include_images:
+      - supabase/postgres
+      - supabase/gotrue
+      - supabase/realtime
+      - supabase/storage-api
+      - postgrest/postgrest
+      - supabase/postgres-meta
+      - supabase/edge-runtime
+
+transforms:
+  project_logs:
+    type: remap
+    inputs:
+      - docker_host
+    source: |
+      .project = "default"
+      .event_message = del(.message)
+      .timestamp = del(.timestamp); # use vector's timestamp
+
+      # Extract Postgres logs
+      if .container_name == "supabase-db" {
+        .metadata.host = "${LOGFLARE_HOST:-analytics.supabase.com}"
+        .metadata.project = .project
+        parsed, err = parse_regex(.event_message, r'^(?P<time>.*?) (?P<log_level>[A-Z]*):  (?P<event_message>.*)$')
+        if err == null {
+          .event_message = parsed.event_message
+          .timestamp = to_timestamp!(parsed.time, "%Y-%m-%d %H:%M:%S%.3f %Z")
+          .metadata.log_level = parsed.log_level
+        }
+      } else if .container_name == "supabase-auth" {
+        .metadata.host = "${LOGFLARE_HOST:-analytics.supabase.com}"
+        .metadata.project = .project
+        parsed, err = parse_json(.event_message)
+        if err == null {
+          .event_message = parsed.msg
+          .timestamp = to_timestamp!(parsed.time, "%Y-%m-%dT%H:%M:%S%.fZ")
+          .metadata = merge!(.metadata, parsed)
+        }
+      }
+
+sinks:
+  logflare:
+    type: file
+    inputs:
+      - project_logs
+    path: /var/lib/vector/logs-%Y-%m-%d.log
+    encoding:
+      codec: json
