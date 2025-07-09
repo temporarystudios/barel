@@ -1,12 +1,12 @@
 ```
-    ____                  _ 
-   |  _ \                | |
-   | |_) | __ _ _ __ ___| |
-   |  _ < / _` | '__/ _ \ |
-   | |_) | (_| | | |  __/ |
-   |____/ \__,_|_|  \___|_|
-                           
-   Next.js + Supabase Dev Container
+██████╗  █████╗ ██████╗ ███████╗██╗     
+██╔══██╗██╔══██╗██╔══██╗██╔════╝██║     
+██████╔╝███████║██████╔╝█████╗  ██║     
+██╔══██╗██╔══██║██╔══██╗██╔══╝  ██║     
+██████╔╝██║  ██║██║  ██║███████╗███████╗
+╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝
+                                         
+NEXT.JS + SUPABASE DEV CONTAINER
 ```
 
 # Barel
@@ -16,14 +16,14 @@
 
 > Modern development environment for Next.js + Supabase applications
 
-A secure Docker development environment for building Next.js applications with Supabase, featuring AI coding assistance and a comprehensive local development stack.
+A secure Docker development environment for building Next.js applications with Supabase, featuring a comprehensive local development stack.
 
 ## Features
 
 - 🐳 Multi-container setup with Docker Compose
 - ⚡ Next.js with TypeScript and Tailwind CSS
 - 🗄️ Local Supabase instance (PostgreSQL, Auth, Storage, Realtime)
-- 🤖 AI coding assistant pre-installed and secured within the container
+- 🤖 AI coding assistant ready (works with Claude, Cursor, GitHub Copilot)
 - 🔒 Network firewall for secure development
 - 🎨 Interactive project initialization with optional features
 - 📦 Helper scripts for database management
@@ -174,20 +174,15 @@ All scripts are located in the `scripts/` directory:
 - `./scripts/apply-schema.sh [schema-file]` - Apply database schema/migrations
 - `./scripts/init-app-repo.sh` - Initialize a separate git repository for your app
 
-## Using AI Coding Assistant
+## Using with AI Coding Assistants
 
-The AI coding assistant is pre-installed in the container. To use it:
+Barel works great with AI coding assistants:
 
-```bash
-# Ask a question
-claude "How do I create a new table in Supabase?"
+- **Claude (via Cursor/Claude.ai)** - The devcontainer mounts Claude configuration
+- **GitHub Copilot** - Works in VS Code with the extension
+- **Cursor AI** - Native support when using Cursor editor
 
-# Have it analyze your code
-claude "Review my authentication implementation"
-
-# Get help with specific files
-claude "Explain what this component does" src/components/Auth.tsx
-```
+The `.devcontainer/devcontainer.json` includes proper mounts for Claude configuration.
 
 ## Database Management
 

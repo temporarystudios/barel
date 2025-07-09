@@ -73,3 +73,6 @@ CLAUDE.md
 app/
 !app/.env.example
 !app/README.md
+
+# Website (separate repository)
+website/
