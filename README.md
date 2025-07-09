@@ -13,6 +13,8 @@ NEXT.JS + SUPABASE DEV CONTAINER
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![Barel Quick Start](./barel.png)
+
 A secure Docker development environment for building Next.js applications with Supabase, featuring a comprehensive local development stack.
 
 ## Features
